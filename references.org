@@ -1,0 +1,60 @@
+* Notifications
+** Send notification to desktop using daemon
+  + notify-send
+** Create custom logs in the system log file
+  + logger "My custom logging message."
+    logger -t mysqld -p daemon.error "Something is rotten in sql"
+    tail -f /var/log/syslog
+
+* GUI
+** Create GTK+ dialogs
+  + gui-client.sh
+** Create KDE desktop / qt apps dialogs
+  + kdialog --msgbox "Password correct.\n About to connect to server"
+  + kdialog --dontagain myscript:nofilemsg --msgbox "File: '~/.backup/config' not found."
+
+* On console magic
+** Create a cli selectable menu
+  + tput-demo.sh
+** Create a yes/no dialog
+  + dialog-demo.sh
+
+* Set keyboard leds
+  + setleds -D +num 
+  + setleds -D -num
+* Write an http client
+  + http-client.sh
+
+* Spawn terminal
+  + gnome-terminal -e "bash --rcfile $my_dir/launch-git.sh"
+* Admin
+** Linux Check IDE / SATA SSD Hard Disk Transfer Speed
+   + for i in 1 2 3; do hdparm -tT /dev/sda; done
+   + dmesg | grep -i sata | grep 'link up'
+** Find the package that provides a file
+   + dpkg -S /bin/ls
+   + dpkg -s coreutils
+   + dpkg -S /usr/sbin/kvm-ok
+   + apt-file search kvm-ok
+
+* Docker
+** Install
+   + apt-get install docker.io
+** Add user to the docker group, to get permissions to access the unix socket to communicate with the docker engine
+   + sudo usermod -a -G docker $USER
+   + logout and login back
+** Delete
+*** all containers that have exited
+    + docker rm $(docker ps -a -q -f status=exited)
+*** a container after it is ran
+    + docker run blah --rm
+*** an image
+    + docker rmi blah
+** list
+*** all running containers
+    + docker ps
+*** all containers
+    + docker ps -a
+
+
+   
